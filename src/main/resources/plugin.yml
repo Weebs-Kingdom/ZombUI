@@ -1,0 +1,8 @@
+name: ZombUI
+version: '${project.version}'
+main: zombui.zombui.ZombUI
+api-version: 1.19
+prefix: ZomBUI
+depend: [ vault ]
+authors: [ MindCollaps ]
+website: https://weebskingdom.com
