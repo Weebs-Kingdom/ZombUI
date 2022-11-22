@@ -1,10 +1,13 @@
 package zombui.zombui.logic;
 
 import org.bukkit.entity.Player;
+import zombui.zombui.logic.map.ZombieMap;
 
 import java.util.ArrayList;
 
 public class GameSession {
+
+    private ZombieMap map;
 
     private boolean sessionRunning;
 
