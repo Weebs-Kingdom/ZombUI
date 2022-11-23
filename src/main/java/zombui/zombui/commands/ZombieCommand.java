@@ -1,19 +1,25 @@
 package zombui.zombui.commands;
 
-import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.jetbrains.annotations.NotNull;
-import zombui.zombui.ZombUI;
+import zombui.zombui.ZombUi;
 
-public abstract class ZombieCommand extends Command {
+public abstract class ZombieCommand implements CommandExecutor {
 
-    private ZombUI zombUI;
+    private ZombUi zombUI;
 
-    public ZombieCommand(@NotNull String name, ZombUI zombUI) {
-        super(name);
+    private String invoke;
+
+    public ZombieCommand(@NotNull String invoke, ZombUi zombUI) {
+        this.invoke = invoke;
         this.zombUI = zombUI;
     }
 
-    public ZombUI getZombUI() {
+    public ZombUi getZombUI() {
         return zombUI;
+    }
+
+    public String getInvoke() {
+        return invoke;
     }
 }

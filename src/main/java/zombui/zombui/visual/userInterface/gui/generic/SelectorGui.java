@@ -3,8 +3,7 @@ package zombui.zombui.visual.userInterface.gui.generic;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import zombui.zombui.ZombUI;
-import zombui.zombui.logic.map.ZombieMap;
+import zombui.zombui.ZombUi;
 import zombui.zombui.visual.CustomItem;
 import zombui.zombui.visual.userInterface.ActionType;
 import zombui.zombui.visual.userInterface.GuiAction;
@@ -20,10 +19,10 @@ public class SelectorGui<E> {
     /**
      * For reference to own instance and calling of methods etc
      */
-    private final ZombUI plugin;
+    private final ZombUi plugin;
 
-    private final ObjectSelector selector;
-    private final SelectorAction action;
+    private final ObjectSelector<E> selector;
+    private final SelectorAction<E> action;
 
 
     //GUI
@@ -34,6 +33,7 @@ public class SelectorGui<E> {
 
     /**
      * Constructor for Selector Guis
+     *
      * @param plugin       The Junkie Core object
      * @param selector     The name selector
      * @param action       The selector action
@@ -41,7 +41,7 @@ public class SelectorGui<E> {
      * @param title        The title of the GUI
      * @param createButton Weather you want to have a create button in your selector GUI
      */
-    public SelectorGui(ZombUI plugin, ObjectSelector selector, SelectorAction action, Player player, String title, boolean createButton) {
+    public SelectorGui(ZombUi plugin, ObjectSelector<E> selector, SelectorAction<E> action, Player player, String title, boolean createButton) {
         this.plugin = plugin;
         this.selector = selector;
         this.action = action;
@@ -52,6 +52,7 @@ public class SelectorGui<E> {
 
     /**
      * Methode for generating a new Page
+     *
      * @param i Seiten Nummer
      */
     public void generatePage(int i) {
@@ -59,7 +60,7 @@ public class SelectorGui<E> {
         page.setTitle(title);
         page.setSlots(27);
 
-        List<E> data = selector.getData();
+        @NotNull List<E> data = selector.getData();
 
         int slotId = 10;
         for (int j = (i * 7); j < (i * 7) + 7; j++) {
@@ -129,13 +130,14 @@ public class SelectorGui<E> {
     /**
      * Methode for closing the gui
      */
-    public void close(){
-        if(this.mcGui != null)
+    public void close() {
+        if (this.mcGui != null)
             this.mcGui.closeInventory();
     }
 
     /**
      * Methode for opening a gui for a player
+     *
      * @param parameters gui parameters
      */
     private void openGui(GuiParameters parameters) {
@@ -162,6 +164,10 @@ public class SelectorGui<E> {
         }
 
         void goBack(MCGui gui);
+    }
+
+    public interface CustomGoBack {
+        void goBack();
     }
 }
 

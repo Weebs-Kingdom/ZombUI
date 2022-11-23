@@ -1,11 +1,11 @@
 package zombui.zombui.visual.userInterface.parts;
 
-import de.craftjunkies.junkiecore.util.visual.CustomItem;
-import de.craftjunkies.junkiecore.util.visual.userInterface.GuiAction;
+import zombui.zombui.visual.CustomItem;
+import zombui.zombui.visual.userInterface.GuiAction;
 
 import java.util.List;
 
-public class GuiPart implements Component{
+public class GuiPart implements Component {
 
     private final boolean isMovable;
 
@@ -16,6 +16,7 @@ public class GuiPart implements Component{
 
     /**
      * Constructor for new GuiPart
+     *
      * @param item CustomItem to use
      */
     public GuiPart(CustomItem item) {
@@ -26,10 +27,11 @@ public class GuiPart implements Component{
 
     /**
      * Constructor for new GuiPart
-     * @param item to use
+     *
+     * @param item      to use
      * @param isMovable true or false
      */
-    public GuiPart(CustomItem item, boolean isMovable){
+    public GuiPart(CustomItem item, boolean isMovable) {
         item.name("");
         this.item = item;
         this.isMovable = isMovable;
@@ -37,6 +39,7 @@ public class GuiPart implements Component{
 
     /**
      * Check if item can be moved
+     *
      * @return true if item can be moved
      */
     @Override
@@ -46,6 +49,7 @@ public class GuiPart implements Component{
 
     /**
      * get registered gui actions of item
+     *
      * @return list of GuiActions
      */
     @Override
@@ -55,6 +59,7 @@ public class GuiPart implements Component{
 
     /**
      * get used CustomItem
+     *
      * @return CustomItem
      */
     @Override

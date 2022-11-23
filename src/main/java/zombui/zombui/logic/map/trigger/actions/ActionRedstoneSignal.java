@@ -4,25 +4,104 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import zombui.zombui.ZombUI;
+import org.jetbrains.annotations.NotNull;
+import zombui.zombui.ZombUi;
 import zombui.zombui.logic.map.enums.RedstoneSignalType;
 import zombui.zombui.logic.map.trigger.ZombieTriggerAction;
+import zombui.zombui.visual.CustomItem;
+import zombui.zombui.visual.userInterface.ActionType;
+import zombui.zombui.visual.userInterface.GuiAction;
+import zombui.zombui.visual.userInterface.gui.GuiParameters;
+import zombui.zombui.visual.userInterface.gui.MCGui;
+import zombui.zombui.visual.userInterface.gui.generic.SelectorGui;
+import zombui.zombui.visual.userInterface.parts.Button;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ActionRedstoneSignal extends ZombieTriggerAction implements Serializable {
 
     private static final long serialVersionUID = 42L;
 
-    private RedstoneSignalType signalType;
+    private RedstoneSignalType signalType = RedstoneSignalType.TOGGLE;
 
-    public ActionRedstoneSignal(Location location, RedstoneSignalType signalType) {
-        super(location);
-        this.signalType = signalType;
+    public ActionRedstoneSignal(Location location, String name) {
+        super(location, name);
     }
 
     @Override
-    public void action(Player player, ZombUI zombUI) {
+    public void putEditor(GuiParameters parameters, Player player, SelectorGui.CustomGoBack goBack, ZombUi zombUI) {
+        parameters.getComponents().put(22, new Button(
+                new CustomItem(Material.REDSTONE_LAMP, "Signal type"),
+                new GuiAction() {
+                    @Override
+                    public void onClick(ActionType actionType, MCGui gui) {
+                        SelectorGui<RedstoneSignalType> selectorGui = new SelectorGui<>(
+                                zombUI,
+                                new SelectorGui.ObjectSelector<RedstoneSignalType>() {
+                                    @Override
+                                    public @NotNull List<RedstoneSignalType> getData() {
+                                        return List.of(new RedstoneSignalType[]{
+                                                RedstoneSignalType.TOGGLE,
+                                                RedstoneSignalType.ON,
+                                                RedstoneSignalType.OFF,
+                                                RedstoneSignalType.PULSE_ON,
+                                                RedstoneSignalType.PULSE_OFF
+                                        });
+                                    }
+
+                                    @Override
+                                    public CustomItem getItem(RedstoneSignalType o) {
+                                        switch (o) {
+                                            case TOGGLE -> {
+                                                return signalType == RedstoneSignalType.TOGGLE ? new CustomItem(Material.LEVER, "Toggle").lore("Selected") : new CustomItem(Material.REDSTONE_TORCH, "Toggle");
+                                            }
+                                            case ON -> {
+                                                return signalType == RedstoneSignalType.ON ? new CustomItem(Material.REDSTONE_TORCH, "On").lore("Selected") : new CustomItem(Material.REDSTONE_TORCH, "On");
+                                            }
+                                            case OFF -> {
+                                                return signalType == RedstoneSignalType.OFF ? new CustomItem(Material.REDSTONE_TORCH, "Off").lore("Selected") : new CustomItem(Material.REDSTONE_TORCH, "Off");
+                                            }
+                                            case PULSE_ON -> {
+                                                return signalType == RedstoneSignalType.PULSE_ON ? new CustomItem(Material.OAK_BUTTON, "Pulse On").lore("Selected") : new CustomItem(Material.REDSTONE_TORCH, "Pulse On");
+                                            }
+                                            case PULSE_OFF -> {
+                                                return signalType == RedstoneSignalType.PULSE_OFF ? new CustomItem(Material.OAK_BUTTON, "Pulse Off").lore("Selected") : new CustomItem(Material.REDSTONE_TORCH, "Pulse Off");
+                                            }
+                                        }
+                                        return null;
+                                    }
+                                },
+                                new SelectorGui.SelectorAction<RedstoneSignalType>() {
+                                    @Override
+                                    public void selected(RedstoneSignalType o) {
+                                        signalType = o;
+                                        goBack.goBack();
+                                    }
+
+                                    @Override
+                                    public void goBack(MCGui gui) {
+                                        goBack.goBack();
+                                    }
+                                },
+                                player,
+                                "Select signal type",
+                                false
+                        );
+                        selectorGui.generatePage(0);
+                    }
+                }
+        ));
+    }
+
+    @Override
+    public String getActionName() {
+        return "Redstone Signal";
+    }
+
+    @Override
+    public void action(Player player, ZombUi zombUI) {
+        System.out.println("DEBUG! Redstone action triggered");
         World w = this.getLocation().getWorld();
         switch (signalType) {
             case ON:

@@ -14,7 +14,8 @@ public class Button implements Component {
 
     /**
      * Constructor for a gui button
-     * @param item to be used
+     *
+     * @param item    to be used
      * @param actions that are supported
      */
     public Button(CustomItem item, GuiAction... actions) {
@@ -24,6 +25,7 @@ public class Button implements Component {
 
     /**
      * Change material of button
+     *
      * @param material to be used
      * @return changed button instance
      */
@@ -34,6 +36,7 @@ public class Button implements Component {
 
     /**
      * Change material of button
+     *
      * @param stack to use
      * @return changed button instance
      */
@@ -49,6 +52,7 @@ public class Button implements Component {
 
     /**
      * Get the supported actions
+     *
      * @return supported actions as list
      */
     public List<GuiAction> getActions() {
@@ -57,6 +61,7 @@ public class Button implements Component {
 
     /**
      * Get the used Item
+     *
      * @return CustomItem in use
      */
     @Override

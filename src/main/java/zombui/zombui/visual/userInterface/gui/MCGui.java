@@ -14,8 +14,7 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.plugin.PluginLogger;
-import zombui.zombui.ZombUI;
+import zombui.zombui.ZombUi;
 import zombui.zombui.visual.CustomItem;
 import zombui.zombui.visual.userInterface.ActionType;
 import zombui.zombui.visual.userInterface.GuiAction;
@@ -38,14 +37,14 @@ public class MCGui implements Listener {
     /**
      * For reference to own instance and calling of methods etc
      */
-    private final ZombUI plugin;
+    private final ZombUi plugin;
     protected GuiParameters guiParameters;
     protected HashMap<Integer, List<GuiAction>> actions;
     private boolean closed;
     private Inventory inventory;
     private String value;
 
-    public MCGui(ZombUI plugin, Player player, GuiParameters guiParameters) {
+    public MCGui(ZombUi plugin, Player player, GuiParameters guiParameters) {
         this.plugin = plugin;
         this.player = player;
         this.guiParameters = guiParameters;
@@ -162,7 +161,7 @@ public class MCGui implements Listener {
         if (!event.getInventory().equals(this.inventory))
             return;
 
-        if(event.getInventory() instanceof PlayerInventory)
+        if (event.getInventory() instanceof PlayerInventory)
             return;
 
         Component component = guiParameters.getComponents().get(event.getSlot());
@@ -235,7 +234,7 @@ public class MCGui implements Listener {
         return value;
     }
 
-    public ZombUI getPlugin() {
+    public ZombUi getPlugin() {
         return plugin;
     }
 
@@ -243,5 +242,6 @@ public class MCGui implements Listener {
         return inventory;
     }
 
-    public void onClose(){}
+    public void onClose() {
+    }
 }

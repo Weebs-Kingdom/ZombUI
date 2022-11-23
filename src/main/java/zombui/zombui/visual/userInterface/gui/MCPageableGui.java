@@ -1,7 +1,7 @@
 package zombui.zombui.visual.userInterface.gui;
 
 import org.bukkit.entity.Player;
-import zombui.zombui.ZombUI;
+import zombui.zombui.ZombUi;
 
 import java.util.ArrayList;
 
@@ -10,11 +10,11 @@ public class MCPageableGui {
     /**
      * For reference to own instance and calling of methods etc
      */
-    private final ZombUI plugin;
+    private final ZombUi plugin;
     private final ArrayList<GuiParameters> pages;
     private Player player;
 
-    public MCPageableGui(ZombUI plugin, Player player, ArrayList<GuiParameters> pages) {
+    public MCPageableGui(ZombUi plugin, Player player, ArrayList<GuiParameters> pages) {
         this.pages = pages;
         this.plugin = plugin;
     }

@@ -2,7 +2,7 @@ package zombui.zombui.logic.playerclass;
 
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import zombui.zombui.ZombUI;
+import zombui.zombui.ZombUi;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public abstract class PlayerClass implements Listener {
     private int health;
     private ArrayList<ItemStack> inventory;
 
-    public PlayerClass(String name, ItemStack icon, int health, ArrayList<ItemStack> inventory, ZombUI zombUI) {
+    public PlayerClass(String name, ItemStack icon, int health, ArrayList<ItemStack> inventory, ZombUi zombUI) {
         this.name = name;
         this.icon = icon;
         this.health = health;

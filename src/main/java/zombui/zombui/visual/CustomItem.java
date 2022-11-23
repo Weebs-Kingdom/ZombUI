@@ -24,6 +24,7 @@ public class CustomItem {
 
     /**
      * Constructor for Custom Items
+     *
      * @param paramMaterial Material to be used
      */
     public CustomItem(Material paramMaterial) {
@@ -32,8 +33,9 @@ public class CustomItem {
 
     /**
      * Constructor for Custom Items
+     *
      * @param paramMaterial Material to be used
-     * @param itemName Itemname to be used
+     * @param itemName      Itemname to be used
      */
     public CustomItem(Material paramMaterial, String itemName) {
         this(new ItemStack(paramMaterial));
@@ -42,6 +44,7 @@ public class CustomItem {
 
     /**
      * Constructor for Custom Items
+     *
      * @param paramItemStack ItemStack to use
      */
     public CustomItem(ItemStack paramItemStack) {
@@ -50,6 +53,7 @@ public class CustomItem {
 
     /**
      * Constructor for Custom Items
+     *
      * @param paramItemStack ItemStack to use
      * @param hideAttributes of ItemStack
      */
@@ -62,6 +66,7 @@ public class CustomItem {
 
     /**
      * Method to convert Numbers
+     *
      * @param paramObject to convert
      * @return converted Object as Number
      */
@@ -87,6 +92,7 @@ public class CustomItem {
 
     /**
      * Change Material of ItemStack
+     *
      * @param paramMaterial to be used
      * @return changed instance
      */
@@ -97,6 +103,7 @@ public class CustomItem {
 
     /**
      * Change this to Skull item
+     *
      * @param paramString Name of Skull owner
      * @return changed instance
      */
@@ -115,13 +122,14 @@ public class CustomItem {
 
     /**
      * Change name of item
+     *
      * @param paramString new name
      * @return changed instance
      */
     public CustomItem name(String paramString) {
         if (this.itemStack.getItemMeta() != null) {
             ItemMeta itemMeta = this.itemStack.getItemMeta();
-            itemMeta.displayName(Component.text(Text.color(paramString)));
+            itemMeta.displayName(Component.text(paramString));
             this.itemStack.setItemMeta(itemMeta);
         }
         return this;
@@ -129,6 +137,7 @@ public class CustomItem {
 
     /**
      * Change amount
+     *
      * @param paramInt new amount
      * @return changed instance
      */
@@ -139,6 +148,7 @@ public class CustomItem {
 
     /**
      * Change Lore of Item
+     *
      * @param paramVarArgs new item lore
      * @return changed instance
      */
@@ -149,6 +159,7 @@ public class CustomItem {
 
     /**
      * Change Lore of Item
+     *
      * @param paramList new item lore
      * @return changed instance
      */
@@ -167,8 +178,9 @@ public class CustomItem {
 
     /**
      * Add enchantment to ItemStack
+     *
      * @param paramEnchantment to add
-     * @param paramInt level as int
+     * @param paramInt         level as int
      * @return changed instance
      */
     public CustomItem addEnchantment(Enchantment paramEnchantment, int paramInt) {
@@ -178,6 +190,7 @@ public class CustomItem {
 
     /**
      * Add enchantment to ItemStack
+     *
      * @param paramEnchantment to add
      * @return changed instance
      */
@@ -188,6 +201,7 @@ public class CustomItem {
 
     /**
      * Append to lore at start
+     *
      * @param paramVarArgs new start
      * @return changed instance
      */
@@ -201,6 +215,7 @@ public class CustomItem {
 
     /**
      * Append to item lore
+     *
      * @param paramList what to append
      * @return changed instance
      */
@@ -210,6 +225,7 @@ public class CustomItem {
 
     /**
      * Append to item lore
+     *
      * @param paramVarArgs what to append
      * @return changed instance
      */
@@ -222,6 +238,7 @@ public class CustomItem {
 
     /**
      * Get material from bukkit
+     *
      * @return material
      */
     public Material getBukkitMaterial() {
@@ -230,6 +247,7 @@ public class CustomItem {
 
     /**
      * Get name of item
+     *
      * @return name as string
      */
     public String getName() {
@@ -238,6 +256,7 @@ public class CustomItem {
 
     /**
      * get item amount
+     *
      * @return item amount as int
      */
     public int getAmount() {
@@ -246,6 +265,7 @@ public class CustomItem {
 
     /**
      * Get lore as arraylist
+     *
      * @return Lore as component arraylist
      */
     public ArrayList<Component> getLore() {
@@ -254,6 +274,7 @@ public class CustomItem {
 
     /**
      * Get lore as arraylist
+     *
      * @return Lore as string arraylist
      */
     public ArrayList<String> getStringLore() {
@@ -266,6 +287,7 @@ public class CustomItem {
 
     /**
      * Get enchantments as map
+     *
      * @return enchantments as map
      */
     public Map<Enchantment, Integer> getEnchants() {
@@ -300,6 +322,7 @@ public class CustomItem {
 
     /**
      * Clone custom item
+     *
      * @return new copy of custom item
      */
     public CustomItem clone() {
@@ -308,6 +331,7 @@ public class CustomItem {
 
     /**
      * Clone custom item
+     *
      * @return new copy of custom item
      */
     public ItemStack get() {

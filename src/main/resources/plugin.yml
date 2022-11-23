@@ -1,8 +1,21 @@
-name: ZombUI
+name: ZombUi
 version: '${project.version}'
-main: zombui.zombui.ZombUI
+main: zombui.zombui.ZombUi
 api-version: 1.19
-prefix: ZomBUI
-depend: [ vault ]
-authors: [ MindCollaps ]
+prefix: ZombUi
+depend:
+  - Vault
+  - WorldEdit
+authors:
+  - MindCollaps
 website: https://weebskingdom.com
+commands:
+  zombie:
+    description: This command opens the GUI to edit your map
+    aliases:
+      - ui
+      - zombui
+    permissions: zombui.commands.zombui
+    permission-message: You do not have permission!
+    usage: /<command>
+

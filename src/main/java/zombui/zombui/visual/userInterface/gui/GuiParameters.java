@@ -30,6 +30,7 @@ public class GuiParameters {
 
     /**
      * Constructor with custom type
+     *
      * @param type of gui
      */
     public GuiParameters(GuiType type) {
@@ -42,6 +43,7 @@ public class GuiParameters {
 
     /**
      * get the type of gui
+     *
      * @param type used
      * @return
      */
@@ -51,6 +53,7 @@ public class GuiParameters {
 
     /**
      * Getter for the title
+     *
      * @return title as string
      */
     public String getTitle() {
@@ -59,6 +62,7 @@ public class GuiParameters {
 
     /**
      * Setter for the title of the gui
+     *
      * @param title as string
      */
     public void setTitle(String title) {
@@ -67,6 +71,7 @@ public class GuiParameters {
 
     /**
      * Getter for the slot count
+     *
      * @return slot count as int
      */
     public int getSlots() {
@@ -75,6 +80,7 @@ public class GuiParameters {
 
     /**
      * Setter for slot count
+     *
      * @param slots as int (multiple of 3)
      */
     public void setSlots(int slots) {
@@ -83,6 +89,7 @@ public class GuiParameters {
 
     /**
      * Get Components of gui
+     *
      * @return components as hashmap(int, component)
      */
     public HashMap<Integer, Component> getComponents() {
@@ -91,6 +98,7 @@ public class GuiParameters {
 
     /**
      * Get type of inventory
+     *
      * @return InventoryType
      */
     public InventoryType getInventoryType() {
@@ -99,6 +107,7 @@ public class GuiParameters {
 
     /**
      * get gui type
+     *
      * @return GuiType
      */
     public GuiType getGuiType() {
@@ -107,6 +116,7 @@ public class GuiParameters {
 
     /**
      * Get Value Action
+     *
      * @return GuiAction
      */
     public GuiAction getValueAction() {
@@ -115,6 +125,7 @@ public class GuiParameters {
 
     /**
      * set value action
+     *
      * @param valueAction (GuiAction) to set
      */
     public void setValueAction(GuiAction valueAction) {
@@ -123,6 +134,7 @@ public class GuiParameters {
 
     /**
      * Get default value
+     *
      * @return string
      */
     public String getDefaultValue() {
@@ -131,6 +143,7 @@ public class GuiParameters {
 
     /**
      * set default value
+     *
      * @param defaultValue as string
      */
     public void setDefaultValue(String defaultValue) {

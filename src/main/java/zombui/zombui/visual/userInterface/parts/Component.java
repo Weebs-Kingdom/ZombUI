@@ -8,6 +8,8 @@ import java.util.List;
 public interface Component {
 
     boolean isComponentMovable();
+
     List<GuiAction> getActions();
+
     CustomItem getItem();
 }

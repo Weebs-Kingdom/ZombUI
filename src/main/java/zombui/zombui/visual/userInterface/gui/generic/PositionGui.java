@@ -1,13 +1,10 @@
 package zombui.zombui.visual.userInterface.gui.generic;
 
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.WorldEdit;
-import com.sk89q.worldedit.math.Vector3;
-import com.sk89q.worldedit.regions.Region;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import zombui.zombui.ZombUI;
+import zombui.zombui.ZombUi;
+import zombui.zombui.util.ZombieUtil;
 import zombui.zombui.visual.CustomItem;
 import zombui.zombui.visual.Text;
 import zombui.zombui.visual.userInterface.ActionType;
@@ -18,7 +15,7 @@ import zombui.zombui.visual.userInterface.parts.Button;
 
 public class PositionGui {
 
-    private final ZombUI plugin;
+    private final ZombUi plugin;
 
     //GUI
     private final PositionGuiAction action;
@@ -26,42 +23,32 @@ public class PositionGui {
     private final Player player;
     private MCGui mcGui;
 
-    public PositionGui(ZombUI plugin, String title, Player player, PositionGuiAction action) {
+    public PositionGui(ZombUi plugin, String title, Player player, PositionGuiAction action) {
         this.plugin = plugin;
         this.title = title;
         this.player = player;
         this.action = action;
     }
 
-    public void generatePage() {
+    public void generatePage(boolean area) {
         GuiParameters page = new GuiParameters();
         page.setTitle(title);
         page.setSlots(27);
 
-        boolean foundWorldEditLocation = true;
-        Location worldEditLocation = null;
-        int radius = -1;
-        try {
-            LocalSession session = WorldEdit.getInstance().getSessionManager().findByName(player.getName());
-            Region region = session.getSelection(session.getSelectionWorld());
-            Vector3 center = region.getCenter();
-            radius = (int) Math.ceil(region.getMaximumPoint().distance(region.getMinimumPoint()) / 2);
-            worldEditLocation = new Location(player.getWorld(), center.getX(), center.getY(), center.getZ());
-        } catch (Exception e) {
-            foundWorldEditLocation = false;
-        }
+        WorldEditPosition worldEditLocation = ZombieUtil.getWorldeditLocation(player);
 
-        if (foundWorldEditLocation) {
-            int finalRadius = radius;
-            Location finalWorldEditLocation = worldEditLocation;
+        if (worldEditLocation != null) {
             page.getComponents().put(11, new Button
                     (
-                            new CustomItem(Material.WOODEN_AXE, "Selected Wordedit Location")
-                                    .lore("X: " + worldEditLocation.getX(), "Y: " + worldEditLocation.getY(), "Z: " + worldEditLocation.getZ(), "Radius: " + radius),
+                            area ?
+                                    new CustomItem(Material.WOODEN_AXE, "Selected WorldEdit Area")
+                                            .lore("X: " + worldEditLocation.getLocation().getX(), "Y: " + worldEditLocation.getLocation().getY(), "Z: " + worldEditLocation.getLocation().getZ(), "Radius: " + worldEditLocation.getRadius()) :
+                                    new CustomItem(Material.WOODEN_AXE, "Selected WorldEdit Location")
+                                            .lore("X: " + worldEditLocation.getFirstLocation().getX(), "Y: " + worldEditLocation.getFirstLocation().getY(), "Z: " + worldEditLocation.getFirstLocation().getZ()),
                             new GuiAction() {
                                 @Override
                                 public void onClick(ActionType actionType, MCGui gui) {
-                                    action.selected(new WorldEditPosition(finalRadius, finalWorldEditLocation), null);
+                                    action.selected(new WorldEditPosition(worldEditLocation.getRadius(), worldEditLocation.getLocation(), worldEditLocation.getFirstLocation()), null);
                                 }
                             }));
         } else {
@@ -75,27 +62,30 @@ public class PositionGui {
 
         page.getComponents().put(13, new Button(
                 new CustomItem(Material.MAP, "Current Location")
-                        .lore("X: " + player.getLocation().getX(), "Y: " + player.getLocation().getY(), "Z: " + player.getLocation().getZ()),
+                        .lore("X: " + player.getLocation().toBlockLocation().getX(), "Y: " + player.getLocation().toBlockLocation().getY(), "Z: " + player.getLocation().toBlockLocation().getZ()),
                 new GuiAction() {
                     @Override
                     public void onClick(ActionType actionType, MCGui gui) {
-                        DefaultGuis.generateDoubleGui(plugin, player, 5, new GuiAction() {
-                            @Override
-                            public void valueConfirmed(String value, MCGui gui) {
-                                try {
-                                    int radius = Integer.parseInt(value);
-                                    action.selected(null, new PlayerPosition(radius, player.getLocation()));
-                                } catch (Exception e) {
-                                    player.sendMessage(Text.chatColor("&cInvalid radius"));
-                                    generatePage();
+                        if (area)
+                            DefaultGuis.generateDoubleGui(plugin, player, 5, new GuiAction() {
+                                @Override
+                                public void valueConfirmed(String value, MCGui gui) {
+                                    try {
+                                        int radius = Integer.parseInt(value);
+                                        action.selected(null, new PlayerPosition(player.getLocation().toBlockLocation()));
+                                    } catch (Exception e) {
+                                        player.sendMessage(Text.chatColor("&cInvalid radius"));
+                                        generatePage(area);
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void valueDenied(MCGui gui) {
-                                generatePage();
-                            }
-                        });
+                                @Override
+                                public void valueDenied(MCGui gui) {
+                                    action.goBack(gui);
+                                }
+                            });
+                        else
+                            action.selected(null, new PlayerPosition(player.getLocation().toBlockLocation()));
                     }
                 }
         ));
@@ -120,13 +110,16 @@ public class PositionGui {
         void selected(WorldEditPosition wordEditPosition, PlayerPosition playerPosition);
     }
 
-    public class WorldEditPosition {
+    public static class WorldEditPosition {
         private int radius;
         private Location location;
 
-        public WorldEditPosition(int radius, Location location) {
+        private Location firstLocation;
+
+        public WorldEditPosition(int radius, Location location, Location firstLocation) {
             this.radius = radius;
             this.location = location;
+            this.firstLocation = firstLocation;
         }
 
         public int getRadius() {
@@ -144,23 +137,22 @@ public class PositionGui {
         public void setLocation(Location location) {
             this.location = location;
         }
+
+        public Location getFirstLocation() {
+            return firstLocation;
+        }
+
+        public void setFirstLocation(Location firstLocation) {
+            this.firstLocation = firstLocation;
+        }
     }
 
     public class PlayerPosition {
-        private int radius;
         private Location location;
 
-        public PlayerPosition(int radius, Location location) {
-            this.radius = radius;
+
+        public PlayerPosition(Location location) {
             this.location = location;
-        }
-
-        public int getRadius() {
-            return radius;
-        }
-
-        public void setRadius(int radius) {
-            this.radius = radius;
         }
 
         public Location getLocation() {

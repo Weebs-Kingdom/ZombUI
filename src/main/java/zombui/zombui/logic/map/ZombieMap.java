@@ -1,8 +1,7 @@
 package zombui.zombui.logic.map;
 
 import org.bukkit.Location;
-import org.checkerframework.checker.units.qual.A;
-import zombui.zombui.ZombUI;
+import zombui.zombui.ZombUi;
 import zombui.zombui.logic.map.spawner.ZombieSpawnPoint;
 import zombui.zombui.logic.map.trigger.ZombieTrigger;
 import zombui.zombui.logic.map.trigger.ZombieTriggerAction;
@@ -27,8 +26,22 @@ public class ZombieMap implements Serializable {
     }
 
     //Init process
-    private void initZombieTriggers(ZombUI zombUI) {
-        for(ZombieTrigger zombieTrigger : zombieTriggers) {
+    public void initWorld(ZombUi zombUi) {
+        initZombieTriggers(zombUi);
+    }
+
+    public void deactivateWorld(ZombUi zombUi) {
+        deactivateZombieTriggers(zombUi);
+    }
+
+    private void deactivateZombieTriggers(ZombUi zombUi) {
+        for (ZombieTrigger zombieTrigger : zombieTriggers) {
+            zombieTrigger.removeListener(zombUi);
+        }
+    }
+
+    private void initZombieTriggers(ZombUi zombUI) {
+        for (ZombieTrigger zombieTrigger : zombieTriggers) {
             zombieTrigger.initListener(zombUI);
         }
     }
