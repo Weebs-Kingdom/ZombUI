@@ -2,6 +2,9 @@ package mindcollaps.zombui.logic.map.trigger.actions;
 
 import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,7 +35,7 @@ public class ActionRedstoneSignal extends ZombieTriggerAction {
     }
 
     @Override
-    public void putEditor(GuiParameters parameters, Player player, SelectorGui.CustomGoBack goBack, ZombUi zombUI) {
+    public void putEditor(GuiParameters parameters, Player player, CustomGoBack goBack, ZombUi zombUI) {
         parameters.getComponents().put(22, new Button(
                 new CustomItem(Material.REDSTONE_LAMP, "Signal type"),
                 new GuiAction() {
@@ -40,7 +43,7 @@ public class ActionRedstoneSignal extends ZombieTriggerAction {
                     public void onClick(ActionType actionType, MCGui gui) {
                         SelectorGui<RedstoneSignalType> selectorGui = new SelectorGui<>(
                                 zombUI,
-                                new SelectorGui.ObjectSelector<RedstoneSignalType>() {
+                                new ObjectSelector<RedstoneSignalType>() {
                                     @Override
                                     public @NotNull List<RedstoneSignalType> getData() {
                                         return List.of(new RedstoneSignalType[]{
@@ -74,7 +77,7 @@ public class ActionRedstoneSignal extends ZombieTriggerAction {
                                         return null;
                                     }
                                 },
-                                new SelectorGui.SelectorAction<RedstoneSignalType>() {
+                                new SelectorAction<RedstoneSignalType>() {
                                     @Override
                                     public void selected(RedstoneSignalType o) {
                                         signalType = o;

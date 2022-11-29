@@ -5,7 +5,10 @@ import mindcollaps.zombui.visual.userInterface.ActionType;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.MCGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -47,7 +50,7 @@ public class LocationTrigger extends ZombieTrigger {
     }
 
     @Override
-    public void putEditor(GuiParameters parameters, Player player, SelectorGui.CustomGoBack goBack, ZombUi zombUI) {
+    public void putEditor(GuiParameters parameters, Player player, CustomGoBack goBack, ZombUi zombUI) {
         parameters.getComponents().put(22,
                 new Button(
                         new CustomItem(Material.TARGET, "Radius").lore("R: " + radius),
@@ -56,7 +59,7 @@ public class LocationTrigger extends ZombieTrigger {
                             public void onClick(ActionType actionType, MCGui gui) {
                                 SelectorGui<Integer> selectorGui = new SelectorGui<>(
                                         zombUI,
-                                        new SelectorGui.ObjectSelector<Integer>() {
+                                        new ObjectSelector<Integer>() {
                                             @Override
                                             public List<Integer> getData() {
                                                 return List.of(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
@@ -67,7 +70,7 @@ public class LocationTrigger extends ZombieTrigger {
                                                 return o == radius ? new CustomItem(Material.REDSTONE_LAMP, "R: " + o).lore("Selected") : new CustomItem(Material.TARGET, "R: " + o);
                                             }
                                         },
-                                        new SelectorGui.SelectorAction<Integer>() {
+                                        new SelectorAction<Integer>() {
                                             @Override
                                             public void selected(Integer o) {
                                                 radius = o;

@@ -15,9 +15,12 @@ import mindcollaps.zombui.visual.userInterface.ActionType;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.MCGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import mindcollaps.zombui.visual.userInterface.gui.generic.DefaultGuis;
 import mindcollaps.zombui.visual.userInterface.gui.generic.PositionGui;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import mindcollaps.zombui.visual.userInterface.parts.Button;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -120,7 +123,7 @@ public class CmdZombies extends ZombieCommand {
 
         SelectorGui<ZombieSpawnPoint> selectorGui = new SelectorGui<ZombieSpawnPoint>(
                 getZombUI(),
-                new SelectorGui.ObjectSelector<ZombieSpawnPoint>() {
+                new ObjectSelector<ZombieSpawnPoint>() {
                     @Override
                     public List<ZombieSpawnPoint> getData() {
                         return map.getZombieSpawnPoints();
@@ -131,7 +134,7 @@ public class CmdZombies extends ZombieCommand {
                         return new CustomItem(Material.ZOMBIE_HEAD, o.getName());
                     }
                 },
-                new SelectorGui.SelectorAction<ZombieSpawnPoint>() {
+                new SelectorAction<ZombieSpawnPoint>() {
                     @Override
                     public void selected(ZombieSpawnPoint o) {
                         openGui(player, generateZombieSpawnPointEditor(player, o));
@@ -229,7 +232,7 @@ public class CmdZombies extends ZombieCommand {
                             public void onClick(ActionType actionType, MCGui gui) {
                                 SelectorGui<Integer> selectorGui = new SelectorGui<>(
                                         getZombUI(),
-                                        new SelectorGui.ObjectSelector<>() {
+                                        new ObjectSelector<Integer>() {
                                             @Override
                                             public List<Integer> getData() {
                                                 return List.of(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
@@ -240,7 +243,7 @@ public class CmdZombies extends ZombieCommand {
                                                 return o == zombieSpawnPoint.getSpawnRadius() ? new CustomItem(Material.REDSTONE_LAMP, "R: " + o).lore("Selected") : new CustomItem(Material.TARGET, "R: " + o);
                                             }
                                         },
-                                        new SelectorGui.SelectorAction<Integer>() {
+                                        new SelectorAction<>() {
                                             @Override
                                             public void selected(Integer o) {
                                                 zombieSpawnPoint.setSpawnRadius(o);
@@ -290,7 +293,7 @@ public class CmdZombies extends ZombieCommand {
 
         SelectorGui<ZombieTrigger> selectorGui = new SelectorGui<>(
                 getZombUI(),
-                new SelectorGui.ObjectSelector<>() {
+                new ObjectSelector<>() {
                     @Override
                     public @NotNull List<ZombieTrigger> getData() {
                         return map.getZombieTriggers();
@@ -301,7 +304,7 @@ public class CmdZombies extends ZombieCommand {
                         return new CustomItem(Material.OBSERVER, o.getName());
                     }
                 },
-                new SelectorGui.SelectorAction<>() {
+                new SelectorAction<>() {
                     @Override
                     public void selected(ZombieTrigger o) {
                         openGui(player, generateTriggerEditor(player, o));
@@ -330,7 +333,7 @@ public class CmdZombies extends ZombieCommand {
 
         SelectorGui<ZombieTriggerAction> selectorGui = new SelectorGui<>(
                 getZombUI(),
-                new SelectorGui.ObjectSelector<>() {
+                new ObjectSelector<>() {
                     @Override
                     public @NotNull List<ZombieTriggerAction> getData() {
                         return map.getZombieTriggerActions();
@@ -341,7 +344,7 @@ public class CmdZombies extends ZombieCommand {
                         return new CustomItem(Material.COMMAND_BLOCK, o.getName());
                     }
                 },
-                new SelectorGui.SelectorAction<ZombieTriggerAction>() {
+                new SelectorAction<ZombieTriggerAction>() {
                     @Override
                     public void selected(ZombieTriggerAction o) {
                         openGui(player, generateActionEditor(player, o));
@@ -370,7 +373,7 @@ public class CmdZombies extends ZombieCommand {
 
         SelectorGui<String> selectorGui = new SelectorGui<>(
                 getZombUI(),
-                new SelectorGui.ObjectSelector<String>() {
+                new ObjectSelector<String>() {
                     @Override
                     public @NotNull List<String> getData() {
                         return List.of(new String[]{
@@ -393,7 +396,7 @@ public class CmdZombies extends ZombieCommand {
                         return new CustomItem(Material.BARRIER, "Unknown");
                     }
                 },
-                new SelectorGui.SelectorAction<String>() {
+                new SelectorAction<String>() {
                     @Override
                     public void selected(String o) {
                         ZombieTrigger trigger = null;
@@ -509,7 +512,7 @@ public class CmdZombies extends ZombieCommand {
                     public void onClick(ActionType actionType, MCGui gui) {
                         SelectorGui<ZombieTrigger.TriggerType> triggerTypeSelectorGui = new SelectorGui<>(
                                 getZombUI(),
-                                new SelectorGui.ObjectSelector<ZombieTrigger.TriggerType>() {
+                                new ObjectSelector<ZombieTrigger.TriggerType>() {
                                     @Override
                                     public @NotNull List getData() {
                                         return List.of(new ZombieTrigger.TriggerType[]{
@@ -540,7 +543,7 @@ public class CmdZombies extends ZombieCommand {
                                         }
                                     }
                                 },
-                                new SelectorGui.SelectorAction<ZombieTrigger.TriggerType>() {
+                                new SelectorAction<ZombieTrigger.TriggerType>() {
                                     @Override
                                     public void selected(ZombieTrigger.TriggerType o) {
                                         zombieTrigger.setType(o);
@@ -571,7 +574,7 @@ public class CmdZombies extends ZombieCommand {
                         //TODO: put in extra function to recall it in selected()
                         SelectorGui<ZombieTriggerAction> actionSelectorGui = new SelectorGui<>(
                                 getZombUI(),
-                                new SelectorGui.ObjectSelector<ZombieTriggerAction>() {
+                                new ObjectSelector<ZombieTriggerAction>() {
                                     @Override
                                     public @NotNull List<ZombieTriggerAction> getData() {
                                         return map.getZombieTriggerActions();
@@ -595,7 +598,7 @@ public class CmdZombies extends ZombieCommand {
                                                         "Location: " + ZombieUtil.getLocationString(o.getLocation()));
                                     }
                                 },
-                                new SelectorGui.SelectorAction<ZombieTriggerAction>() {
+                                new SelectorAction<ZombieTriggerAction>() {
                                     @Override
                                     public void selected(ZombieTriggerAction o) {
                                         //If it contains the action, remove it
@@ -653,7 +656,7 @@ public class CmdZombies extends ZombieCommand {
                 }
         ));
 
-        zombieTrigger.putEditor(parameters, player, new SelectorGui.CustomGoBack() {
+        zombieTrigger.putEditor(parameters, player, new CustomGoBack() {
                     @Override
                     public void goBack() {
                         openGui(player, generateTriggerEditor(player, zombieTrigger));
@@ -669,7 +672,7 @@ public class CmdZombies extends ZombieCommand {
 
         SelectorGui<String> selectorGui = new SelectorGui<>(
                 getZombUI(),
-                new SelectorGui.ObjectSelector<>() {
+                new ObjectSelector<String>() {
                     @Override
                     public @NotNull List<String> getData() {
                         return List.of(new String[]{
@@ -692,7 +695,7 @@ public class CmdZombies extends ZombieCommand {
                         return new CustomItem(Material.BARRIER, "Unknown");
                     }
                 },
-                new SelectorGui.SelectorAction<>() {
+                new SelectorAction<>() {
                     @Override
                     public void selected(String o) {
                         ZombieTriggerAction action = null;
@@ -811,7 +814,7 @@ public class CmdZombies extends ZombieCommand {
                 }
         ));
 
-        zombieAction.putEditor(parameters, player, new SelectorGui.CustomGoBack() {
+        zombieAction.putEditor(parameters, player, new CustomGoBack() {
                     @Override
                     public void goBack() {
                         openGui(player, generateActionEditor(player, zombieAction));

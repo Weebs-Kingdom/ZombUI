@@ -1,6 +1,9 @@
 package mindcollaps.zombui.logic.map.trigger.actions;
 
 import mindcollaps.zombui.logic.GameSession;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,7 +24,6 @@ import mindcollaps.zombui.visual.userInterface.gui.MCGui;
 import mindcollaps.zombui.visual.userInterface.parts.Button;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -37,7 +39,7 @@ public class ActionDoor extends ZombieTriggerAction {
     }
 
     @Override
-    public void putEditor(GuiParameters parameters, Player player, SelectorGui.CustomGoBack goBack, ZombUi zombUI) {
+    public void putEditor(GuiParameters parameters, Player player, CustomGoBack goBack, ZombUi zombUI) {
         parameters.getComponents().put(22, new Button(
                 new CustomItem(Material.IRON_DOOR, "Door type"),
                 new GuiAction() {
@@ -45,7 +47,7 @@ public class ActionDoor extends ZombieTriggerAction {
                     public void onClick(ActionType actionType, MCGui gui) {
                         SelectorGui<DoorActionType> selectorGui = new SelectorGui<>(
                                 zombUI,
-                                new SelectorGui.ObjectSelector<DoorActionType>() {
+                                new ObjectSelector<DoorActionType>() {
                                     @Override
                                     public @NotNull List<DoorActionType> getData() {
                                         return List.of(new DoorActionType[]{
@@ -73,7 +75,7 @@ public class ActionDoor extends ZombieTriggerAction {
                                         return new CustomItem(Material.BARRIER, "Type not found");
                                     }
                                 },
-                                new SelectorGui.SelectorAction<DoorActionType>() {
+                                new SelectorAction<DoorActionType>() {
                                     @Override
                                     public void selected(DoorActionType o) {
                                         doorActionType = o;

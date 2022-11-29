@@ -1,7 +1,7 @@
 package mindcollaps.zombui.logic.map.trigger;
 
 import mindcollaps.zombui.logic.GameSession;
-import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -39,7 +39,7 @@ public abstract class ZombieTrigger implements Serializable, Listener {
      *
      * @param parameters The Gui Parameters where the editor stuff gets added to
      */
-    public abstract void putEditor(GuiParameters parameters, Player player, SelectorGui.CustomGoBack goBack, ZombUi zombUI);
+    public abstract void putEditor(GuiParameters parameters, Player player, CustomGoBack goBack, ZombUi zombUI);
 
     /**
      * This function needs to be called when this trigger gets set active and the listeners should be activated

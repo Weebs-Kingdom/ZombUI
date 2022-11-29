@@ -212,8 +212,10 @@ public class MCGui implements Listener {
     public void leave(PlayerQuitEvent event) {
         if (closed)
             return;
-        if (event.getPlayer().equals(this.player))
+        if (event.getPlayer().equals(this.player)){
             closeGui();
+
+        }
     }
 
     @EventHandler

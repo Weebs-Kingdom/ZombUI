@@ -1,5 +1,7 @@
 package mindcollaps.zombui.visual.userInterface.gui.generic;
 
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -143,31 +145,6 @@ public class SelectorGui<E> {
     private void openGui(GuiParameters parameters) {
         this.mcGui = new MCGui(plugin, player, parameters);
         this.mcGui.open();
-    }
-
-    /**
-     * This interface should provide a value that is shown in the GUI as selector text
-     */
-    public interface ObjectSelector<E> {
-        @NotNull List<E> getData();
-
-        CustomItem getItem(E o);
-    }
-
-    /**
-     * This interface should be used to make further steps after a selection has been taken
-     */
-    public interface SelectorAction<E> {
-        void selected(E o);
-
-        default void create(MCGui gui) {
-        }
-
-        void goBack(MCGui gui);
-    }
-
-    public interface CustomGoBack {
-        void goBack();
     }
 }
 

@@ -2,7 +2,7 @@ package mindcollaps.zombui.logic.map.trigger;
 
 import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
-import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import mindcollaps.zombui.ZombUi;
@@ -26,7 +26,7 @@ public abstract class ZombieTriggerAction implements Serializable {
      *
      * @param parameters The Gui Parameters where the editor stuff gets added to
      */
-    public abstract void putEditor(GuiParameters parameters, Player player, SelectorGui.CustomGoBack goBack, ZombUi zombUI);
+    public abstract void putEditor(GuiParameters parameters, Player player, CustomGoBack goBack, ZombUi zombUI);
 
     /**
      * @return Returns the name of the action like "Door", "Redstone Signal" etc.
