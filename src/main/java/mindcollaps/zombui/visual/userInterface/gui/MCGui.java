@@ -1,5 +1,6 @@
 package mindcollaps.zombui.visual.userInterface.gui;
 
+import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.visual.CustomItem;
 import mindcollaps.zombui.visual.userInterface.ActionType;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
@@ -19,7 +20,6 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.PlayerInventory;
-import mindcollaps.zombui.ZombUi;
 
 import java.util.HashMap;
 import java.util.List;
@@ -212,7 +212,7 @@ public class MCGui implements Listener {
     public void leave(PlayerQuitEvent event) {
         if (closed)
             return;
-        if (event.getPlayer().equals(this.player)){
+        if (event.getPlayer().equals(this.player)) {
             closeGui();
 
         }

@@ -6,7 +6,6 @@ import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.logic.map.enums.TextType;
 import mindcollaps.zombui.logic.map.trigger.ZombieTriggerAction;
 import mindcollaps.zombui.visual.CustomItem;
-import mindcollaps.zombui.visual.Text;
 import mindcollaps.zombui.visual.userInterface.ActionType;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
@@ -21,7 +20,6 @@ import mindcollaps.zombui.visual.userInterface.parts.Button;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -38,6 +36,7 @@ public class ActionText extends ZombieTriggerAction {
 
     public ActionText(Location location, String name) {
         super(location, name);
+        setCustomIcon(Material.FEATHER);
     }
 
     @Override
@@ -105,7 +104,7 @@ public class ActionText extends ZombieTriggerAction {
         }));
 
         parameters.getComponents().put(20,
-                new Button(new CustomItem(Material.WHITE_DYE, "Color").lore(color.toString()),
+                new Button(new CustomItem(Material.WHITE_DYE, color + "Color").lore(color.toString()),
                         new GuiAction() {
                             @Override
                             public void onClick(ActionType actionType, MCGui gui) {

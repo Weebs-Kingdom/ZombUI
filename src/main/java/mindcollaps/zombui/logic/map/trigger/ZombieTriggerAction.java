@@ -1,11 +1,12 @@
 package mindcollaps.zombui.logic.map.trigger;
 
+import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import mindcollaps.zombui.ZombUi;
 
 import java.io.Serializable;
 
@@ -15,6 +16,8 @@ public abstract class ZombieTriggerAction implements Serializable {
 
     private String name;
     private Location location;
+
+    private Material customIcon;
 
     public ZombieTriggerAction(Location location, String name) {
         this.location = location;
@@ -55,5 +58,13 @@ public abstract class ZombieTriggerAction implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Material getCustomIcon() {
+        return customIcon;
+    }
+
+    public void setCustomIcon(Material customIcon) {
+        this.customIcon = customIcon;
     }
 }

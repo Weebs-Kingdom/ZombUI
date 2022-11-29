@@ -1,10 +1,7 @@
 package mindcollaps.zombui.visual.userInterface.gui.generic;
 
-import mindcollaps.zombui.util.ZombieUtil;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import mindcollaps.zombui.ZombUi;
+import mindcollaps.zombui.util.ZombieUtil;
 import mindcollaps.zombui.visual.CustomItem;
 import mindcollaps.zombui.visual.Text;
 import mindcollaps.zombui.visual.userInterface.ActionType;
@@ -12,6 +9,9 @@ import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.MCGui;
 import mindcollaps.zombui.visual.userInterface.parts.Button;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 
 public class PositionGui {
 

@@ -1,7 +1,7 @@
 package mindcollaps.zombui.visual.userInterface.gui;
 
-import org.bukkit.entity.Player;
 import mindcollaps.zombui.ZombUi;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 

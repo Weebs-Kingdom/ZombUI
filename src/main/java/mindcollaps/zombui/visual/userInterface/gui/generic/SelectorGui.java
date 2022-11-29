@@ -1,10 +1,5 @@
 package mindcollaps.zombui.visual.userInterface.gui.generic;
 
-import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
-import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.visual.CustomItem;
 import mindcollaps.zombui.visual.userInterface.ActionType;
@@ -12,7 +7,12 @@ import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.GuiType;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.MCGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import mindcollaps.zombui.visual.userInterface.parts.Button;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

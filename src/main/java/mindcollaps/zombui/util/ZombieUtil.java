@@ -4,9 +4,9 @@ import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.math.Vector3;
 import com.sk89q.worldedit.regions.Region;
+import mindcollaps.zombui.visual.userInterface.gui.generic.PositionGui;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import mindcollaps.zombui.visual.userInterface.gui.generic.PositionGui;
 
 public class ZombieUtil {
     public static String getLocationString(Location location) {

@@ -1,10 +1,19 @@
 package mindcollaps.zombui.logic.map.trigger.actions;
 
+import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.logic.GameSession;
+import mindcollaps.zombui.logic.map.enums.DoorActionType;
+import mindcollaps.zombui.logic.map.trigger.ZombieTriggerAction;
+import mindcollaps.zombui.visual.CustomItem;
+import mindcollaps.zombui.visual.userInterface.ActionType;
+import mindcollaps.zombui.visual.userInterface.GuiAction;
+import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
+import mindcollaps.zombui.visual.userInterface.gui.MCGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
-import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
+import mindcollaps.zombui.visual.userInterface.parts.Button;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,15 +22,6 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.data.type.Door;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import mindcollaps.zombui.ZombUi;
-import mindcollaps.zombui.logic.map.enums.DoorActionType;
-import mindcollaps.zombui.logic.map.trigger.ZombieTriggerAction;
-import mindcollaps.zombui.visual.CustomItem;
-import mindcollaps.zombui.visual.userInterface.ActionType;
-import mindcollaps.zombui.visual.userInterface.GuiAction;
-import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
-import mindcollaps.zombui.visual.userInterface.gui.MCGui;
-import mindcollaps.zombui.visual.userInterface.parts.Button;
 
 import java.io.Serial;
 import java.util.List;
@@ -36,6 +36,7 @@ public class ActionDoor extends ZombieTriggerAction {
 
     public ActionDoor(Location location, String name) {
         super(location, name);
+        setCustomIcon(Material.OAK_DOOR);
     }
 
     @Override

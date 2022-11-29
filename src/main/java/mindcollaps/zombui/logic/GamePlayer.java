@@ -1,7 +1,7 @@
 package mindcollaps.zombui.logic;
 
-import org.bukkit.entity.Player;
 import mindcollaps.zombui.logic.playerclass.PlayerClass;
+import org.bukkit.entity.Player;
 
 public class GamePlayer {
 

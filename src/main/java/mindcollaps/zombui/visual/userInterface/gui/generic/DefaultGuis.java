@@ -1,11 +1,11 @@
 package mindcollaps.zombui.visual.userInterface.gui.generic;
 
-import org.bukkit.entity.Player;
 import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.GuiType;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.MCGui;
+import org.bukkit.entity.Player;
 
 public class DefaultGuis {
 

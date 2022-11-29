@@ -1,5 +1,6 @@
 package mindcollaps.zombui.logic;
 
+import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.logic.map.ZombieMap;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -8,7 +9,6 @@ import net.kyori.adventure.title.TitlePart;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
-import mindcollaps.zombui.ZombUi;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;

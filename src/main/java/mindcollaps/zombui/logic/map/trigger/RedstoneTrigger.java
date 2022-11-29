@@ -1,12 +1,17 @@
 package mindcollaps.zombui.logic.map.trigger;
 
+import mindcollaps.zombui.ZombUi;
+import mindcollaps.zombui.logic.map.enums.RedstoneSignalType;
 import mindcollaps.zombui.visual.CustomItem;
 import mindcollaps.zombui.visual.userInterface.ActionType;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
+import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
+import mindcollaps.zombui.visual.userInterface.gui.MCGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
-import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
+import mindcollaps.zombui.visual.userInterface.parts.Button;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.data.Powerable;
@@ -14,11 +19,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
-import mindcollaps.zombui.ZombUi;
-import mindcollaps.zombui.logic.map.enums.RedstoneSignalType;
-import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
-import mindcollaps.zombui.visual.userInterface.gui.MCGui;
-import mindcollaps.zombui.visual.userInterface.parts.Button;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class RedstoneTrigger extends ZombieTrigger {
 
     public RedstoneTrigger(TriggerType type, Location location, String name) {
         super(type, location, name);
+        setCustomIcon(Material.COMPARATOR);
     }
 
     @Override

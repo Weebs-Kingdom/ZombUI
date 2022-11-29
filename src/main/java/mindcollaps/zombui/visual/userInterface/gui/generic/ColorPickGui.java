@@ -8,7 +8,6 @@ import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.MCGui;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import mindcollaps.zombui.visual.userInterface.parts.Button;
-import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -19,9 +18,6 @@ public class ColorPickGui {
     //GUI
     private final String title;
     private final Player player;
-    private MCGui mcGui;
-    private SelectorAction<String> action;
-
     private final Material[] colors = new Material[]{
             Material.WHITE_DYE,
             Material.ORANGE_DYE,
@@ -39,6 +35,8 @@ public class ColorPickGui {
             Material.BLACK_DYE,
 
     };
+    private MCGui mcGui;
+    private SelectorAction<String> action;
 
     public ColorPickGui(ZombUi plugin, String title, Player player, SelectorAction<String> action) {
         this.plugin = plugin;
@@ -64,11 +62,11 @@ public class ColorPickGui {
                     }));
 
             slot++;
-            if(slot == 17)
+            if (slot == 17)
                 slot = 19;
-            else if(slot == 26)
+            else if (slot == 26)
                 slot = 28;
-            else if(slot == 35)
+            else if (slot == 35)
                 slot = 40;
         }
 

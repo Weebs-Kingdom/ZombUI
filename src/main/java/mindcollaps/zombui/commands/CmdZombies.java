@@ -1,5 +1,6 @@
 package mindcollaps.zombui.commands;
 
+import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.logic.map.ZombieMap;
 import mindcollaps.zombui.logic.map.spawner.ZombieSpawnPoint;
@@ -15,10 +16,10 @@ import mindcollaps.zombui.visual.userInterface.ActionType;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.MCGui;
-import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import mindcollaps.zombui.visual.userInterface.gui.generic.DefaultGuis;
 import mindcollaps.zombui.visual.userInterface.gui.generic.PositionGui;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
+import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.CustomGoBack;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.ObjectSelector;
 import mindcollaps.zombui.visual.userInterface.gui.generic.interfaces.SelectorAction;
 import mindcollaps.zombui.visual.userInterface.parts.Button;
@@ -27,7 +28,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import mindcollaps.zombui.ZombUi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -301,6 +301,8 @@ public class CmdZombies extends ZombieCommand {
 
                     @Override
                     public CustomItem getItem(ZombieTrigger o) {
+                        if (o.getCustomIcon() != null)
+                            return new CustomItem(o.getCustomIcon(), o.getName());
                         return new CustomItem(Material.OBSERVER, o.getName());
                     }
                 },
@@ -341,6 +343,8 @@ public class CmdZombies extends ZombieCommand {
 
                     @Override
                     public CustomItem getItem(ZombieTriggerAction o) {
+                        if (o.getCustomIcon() != null)
+                            return new CustomItem(o.getCustomIcon(), o.getName());
                         return new CustomItem(Material.COMMAND_BLOCK, o.getName());
                     }
                 },

@@ -1,10 +1,10 @@
 package mindcollaps.zombui.logic.map;
 
-import org.bukkit.Location;
 import mindcollaps.zombui.ZombUi;
 import mindcollaps.zombui.logic.map.spawner.ZombieSpawnPoint;
 import mindcollaps.zombui.logic.map.trigger.ZombieTrigger;
 import mindcollaps.zombui.logic.map.trigger.ZombieTriggerAction;
+import org.bukkit.Location;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,14 +14,12 @@ public class ZombieMap implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 42L;
-
+    //Player stuff
+    private final Location playerSpawnPoint;
     //Zombie stuff
     private ArrayList<ZombieSpawnPoint> zombieSpawnPoints = new ArrayList<>();
     private ArrayList<ZombieTrigger> zombieTriggers = new ArrayList<>();
     private ArrayList<ZombieTriggerAction> zombieTriggerActions = new ArrayList<>();
-
-    //Player stuff
-    private final Location playerSpawnPoint;
 
     public ZombieMap(Location playerSpawnPoint) {
         this.playerSpawnPoint = playerSpawnPoint;

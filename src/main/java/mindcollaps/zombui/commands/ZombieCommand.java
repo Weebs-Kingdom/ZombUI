@@ -1,8 +1,8 @@
 package mindcollaps.zombui.commands;
 
+import mindcollaps.zombui.ZombUi;
 import org.bukkit.command.CommandExecutor;
 import org.jetbrains.annotations.NotNull;
-import mindcollaps.zombui.ZombUi;
 
 public abstract class ZombieCommand implements CommandExecutor {
 
