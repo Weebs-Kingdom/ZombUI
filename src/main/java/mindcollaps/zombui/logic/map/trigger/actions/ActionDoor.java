@@ -1,5 +1,6 @@
 package mindcollaps.zombui.logic.map.trigger.actions;
 
+import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -24,7 +25,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 
-public class ActionDoor extends ZombieTriggerAction implements Serializable {
+public class ActionDoor extends ZombieTriggerAction {
 
     @Serial
     private static final long serialVersionUID = 42L;
@@ -101,7 +102,7 @@ public class ActionDoor extends ZombieTriggerAction implements Serializable {
     }
 
     @Override
-    public void action(Player player, ZombUi zombUI) {
+    public void action(Player player, GameSession gameSession, ZombUi zombUI) {
         World w = this.getLocation().getWorld();
 
         Block b = w.getBlockAt(getLocation());

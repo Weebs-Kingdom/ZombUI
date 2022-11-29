@@ -6,11 +6,13 @@ import mindcollaps.zombui.logic.map.spawner.ZombieSpawnPoint;
 import mindcollaps.zombui.logic.map.trigger.ZombieTrigger;
 import mindcollaps.zombui.logic.map.trigger.ZombieTriggerAction;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ZombieMap implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 42L;
 
     //Zombie stuff

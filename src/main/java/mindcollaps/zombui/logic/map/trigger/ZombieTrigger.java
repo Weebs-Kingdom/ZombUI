@@ -1,5 +1,6 @@
 package mindcollaps.zombui.logic.map.trigger;
 
+import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -72,8 +73,9 @@ public abstract class ZombieTrigger implements Serializable, Listener {
 
         triggeredPlayers.add(player.getUniqueId());
         triggered = true;
+        GameSession gameSession = zombUI.getGameSession(player.getWorld());
         for (ZombieTriggerAction response : actions) {
-            response.action(player, zombUI);
+            response.action(player, gameSession, zombUI);
         }
 
         if (type == TriggerType.ONCE) removeListener(zombUI);

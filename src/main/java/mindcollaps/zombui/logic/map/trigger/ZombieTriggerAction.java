@@ -1,5 +1,6 @@
 package mindcollaps.zombui.logic.map.trigger;
 
+import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.visual.userInterface.gui.GuiParameters;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import org.bukkit.Location;
@@ -38,7 +39,7 @@ public abstract class ZombieTriggerAction implements Serializable {
      * @param player The player that triggered the trigger this action is located to
      * @param zombUI The plugin instance
      */
-    public abstract void action(Player player, ZombUi zombUI);
+    public abstract void action(Player player, GameSession gameSession, ZombUi zombUI);
 
     public Location getLocation() {
         return location;

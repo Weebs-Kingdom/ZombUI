@@ -1,5 +1,6 @@
 package mindcollaps.zombui.logic.map.trigger.actions;
 
+import mindcollaps.zombui.logic.GameSession;
 import mindcollaps.zombui.visual.userInterface.GuiAction;
 import mindcollaps.zombui.visual.userInterface.gui.generic.SelectorGui;
 import org.bukkit.Location;
@@ -17,10 +18,9 @@ import mindcollaps.zombui.visual.userInterface.gui.MCGui;
 import mindcollaps.zombui.visual.userInterface.parts.Button;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.List;
 
-public class ActionRedstoneSignal extends ZombieTriggerAction implements Serializable {
+public class ActionRedstoneSignal extends ZombieTriggerAction {
 
     @Serial
     private static final long serialVersionUID = 42L;
@@ -102,7 +102,7 @@ public class ActionRedstoneSignal extends ZombieTriggerAction implements Seriali
     }
 
     @Override
-    public void action(Player player, ZombUi zombUI) {
+    public void action(Player player, GameSession gameSession, ZombUi zombUI) {
         System.out.println("DEBUG! Redstone action triggered");
         World w = this.getLocation().getWorld();
         switch (signalType) {
