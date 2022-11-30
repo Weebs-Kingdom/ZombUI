@@ -1,0 +1,2 @@
+- name: Compile Minecraft Spigot (via BuildTools)
+  uses: SpraxDev/Action-SpigotMC@v4.1.0
