@@ -10,6 +10,7 @@ jobs:
           java-version: '19'
           distribution: 'adopt'
           cache: maven
-          run: mvn clean package
+      - name: Compile with maven
+        run: mvn clean package
       ##- name: Compile Minecraft Spigot (via BuildTools)
      ##   uses: SpraxDev/Action-SpigotMC@v4.1.0
