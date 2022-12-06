@@ -9,12 +9,15 @@ import net.kyori.adventure.title.TitlePart;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class GameSession {
+public class GameSession implements Listener {
 
     private ZombieMap map;
     private boolean sessionRunning = false;
@@ -36,7 +39,13 @@ public class GameSession {
         map.initWorld(zombUi);
     }
 
+    @EventHandler
+    public void onWorldJoined(PlayerChangedWorldEvent event){
+
+    }
+
     public void initQueue(ZombUi zombUi) {
+        zombUi.getServer().getPluginManager().registerEvents(this, zombUi);
 
         //add players to queue
         for (GamePlayer player : players) {
