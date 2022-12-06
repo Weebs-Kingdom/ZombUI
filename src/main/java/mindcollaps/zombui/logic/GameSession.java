@@ -40,15 +40,18 @@ public class GameSession implements Listener {
     }
 
     @EventHandler
-    public void onWorldJoined(PlayerChangedWorldEvent event, ZombUi zombUi){
-        if (event.getPlayer().getWorld().getName().equals(map.getPlayerSpawnPoint().getWorld().getName())){
+    public void onWorldChanged(PlayerChangedWorldEvent event, ZombUi zombUi){
+        if (event.getPlayer().getWorld().getUID().equals(map.getPlayerSpawnPoint().getWorld().getUID()) && !event.getFrom().getUID().equals(map.getPlayerSpawnPoint().getWorld().getUID())){
             queue.add(event.getPlayer());
+            //TODO: change join message
             event.getPlayer().sendMessage(Component.text("You joined the queue!").color(TextColor.color(0x00FF00)));
             event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.MASTER, 1, 1);
 
             if (queue.size() > 4){
                 startCountdown(zombUi);
             }
+        } else if (event.getFrom().getUID().equals(map.getPlayerSpawnPoint().getWorld().getUID()) && !event.getPlayer().getWorld().getUID().equals(map.getPlayerSpawnPoint().getWorld().getUID())) {
+            queue.remove(event.getPlayer());
         }
     }
     public void startCountdown(ZombUi zombUi) {
@@ -87,7 +90,6 @@ public class GameSession implements Listener {
     }
     public void initQueue(ZombUi zombUi) {
         zombUi.getServer().getPluginManager().registerEvents(this, zombUi);
-
     }
 
     public void startNewRound(ZombUi zombUi) {
