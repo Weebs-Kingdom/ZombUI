@@ -37,6 +37,12 @@ public class GameSession {
     }
 
     public void initQueue(ZombUi zombUi) {
+
+        //add players to queue
+        for (GamePlayer player : players) {
+            queue.add(player.getPlayer());
+        }
+
         //final countdown
         for (Player player : queue) {
             player.showTitle(
