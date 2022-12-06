@@ -61,6 +61,7 @@ public class GameSession {
                                     player.showTitle(Title.title(Component.text("Let the game begin").color(TextColor.color(0xFF1F00)), Component.empty()));
                                     player.teleport(map.getPlayerSpawnPoint());
                                     player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, SoundCategory.MASTER, 1, 1);
+                                    startGame(zombUi);
                                 }, 20);
                             }, 20);
                         }, 20);
