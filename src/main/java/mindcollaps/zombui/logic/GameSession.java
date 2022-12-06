@@ -40,18 +40,18 @@ public class GameSession implements Listener {
     }
 
     @EventHandler
-    public void onWorldJoined(PlayerChangedWorldEvent event){
+    public void onWorldJoined(PlayerChangedWorldEvent event, ZombUi zombUi){
+        if (event.getPlayer().getWorld().getName().equals(map.getPlayerSpawnPoint().getWorld().getName())){
+            queue.add(event.getPlayer());
+            event.getPlayer().sendMessage(Component.text("You joined the queue!").color(TextColor.color(0x00FF00)));
+            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.MASTER, 1, 1);
 
-    }
-
-    public void initQueue(ZombUi zombUi) {
-        zombUi.getServer().getPluginManager().registerEvents(this, zombUi);
-
-        //add players to queue
-        for (GamePlayer player : players) {
-            queue.add(player.getPlayer());
+            if (queue.size() > 4){
+                startCountdown(zombUi);
+            }
         }
-
+    }
+    public void startCountdown(ZombUi zombUi) {
         //final countdown
         for (Player player : queue) {
             player.showTitle(
@@ -68,8 +68,7 @@ public class GameSession implements Listener {
                                 player.showTitle(Title.title(Component.text("Game starting in 0 seconds!").color(TextColor.color(0xFF2F00)), Component.empty()));
                                 zombUi.getServer().getScheduler().runTaskLater(zombUi, () -> {
                                     player.showTitle(Title.title(Component.text("Let the game begin").color(TextColor.color(0xFF1F00)), Component.empty()));
-                                    player.teleport(map.getPlayerSpawnPoint());
-                                    player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, SoundCategory.MASTER, 1, 1);
+                                    teleportPlayers();
                                     startGame(zombUi);
                                 }, 20);
                             }, 20);
@@ -78,6 +77,17 @@ public class GameSession implements Listener {
                 }, 20);
             }, 20);
         }
+    }
+
+    public void teleportPlayers() {
+        for (Player player : queue) {
+            player.teleport(map.getPlayerSpawnPoint());
+            player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, SoundCategory.MASTER, 1, 1);
+        }
+    }
+    public void initQueue(ZombUi zombUi) {
+        zombUi.getServer().getPluginManager().registerEvents(this, zombUi);
+
     }
 
     public void startNewRound(ZombUi zombUi) {
